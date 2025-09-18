@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>talent up -- Empleos & Capacitación</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121933;
+      --muted: #9aa4c7;
+      --text: #ecf0ff;
+      --brand: #6ea8fe;
+      --ok: #36d399;
+      --warn: #fbbf24;
+      --danger: #fb7185;
+      --ring: rgba(110, 168, 254, .4);
+      --card: #12182e;
+      --chip: #1b2342;
+      --shadow: 0 20px 40px rgba(3, 10, 40, .35);
+      --radius: 18px;
+    }
+    /* ... resto de tu CSS ... */
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">AR</div>
+        <div>talent up <span style="opacity:.7">Argentina</span></div>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="empleos">Empleos</button>
+        <button class="tab-btn" data-tab="capacitacion">Capacitación</button>
+        <button class="tab-btn" data-tab="favoritos">Favoritos</button>
+      </div>
+      <div class="actions">
+        <button class="btn" id="darkToggle">🌗</button>
+      </div>
+    </div>
+  </header>
+  <main class="container">
+    <section class="hero">
+      <h1 class="title">Encontrá empleo en las empresas líderes 🇦🇷</h1>
+      <p class="subtitle">
+        Buscá por puesto, empresa o ciudad; filtrá por modalidad y nivel. 
+        Guardá tus avisos y seguí tu progreso.
+      </p>
+      <div class="searchbar">
+        <input id="q" class="input" placeholder="🔎 Puesto, empresa o ciudad" />
+        <select id="company" class="select">
+          <option value="">Todas las empresas</option>
+        </select>
+        <select id="modality" class="select">
+          <option value="">Cualquier modalidad</option>
+          <option>Presencial</option>
+          <option>Híbrido</option>
+          <option>Remoto</option>
+        </select>
+        <button class="btn" id="apply">Filtrar</button>
+      </div>
+      <button class="btn" id="clearFilters">Limpiar</button>
+    </section>
+    <section id="empleos" class="view">
+      <div id="jobsGrid" class="grid"></div>
+      <div id="emptyJobs" class="empty" style="display:none">
+        No se encontraron resultados
+      </div>
+    </section>
+    <section id="favoritos" class="view" style="display:none">
+      <h2 class="section-title">Favoritos</h2>
+      <div id="favGrid" class="grid"></div>
+      <div id="emptyFav" class="empty">
+        Nada guardado aún
+      </div>
+    </section>
+    <section id="capacitacion" class="view" style="display:none">
+      <h2 class="section-title">Capacitación laboral</h2>
+      <div id="trainGrid" class="grid"></div>
+    </section>
+    <div class="snackbar" id="snackbar"></div>
+  </main>
+  <script>
+    // ... tu código JavaScript original ...
+  </script>
+</body>
+</html>
