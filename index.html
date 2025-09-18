@@ -21,88 +21,7 @@
       --shadow: 0 20px 40px rgba(3, 10, 40, .35);
       --radius: 18px;
     }
-    /* ... resto de tu CSS ... */
-  </style>
-</head>
-<body>
- 
-  <main class="container">
-    <section class="hero">
-      <h1 class="title">Encontrá empleo en las empresas líderes 🇦🇷</h1>
-      <p class="subtitle">
-        Buscá por puesto, empresa o ciudad; filtrá por modalidad y nivel. 
-        Guardá tus avisos y seguí tu progreso.
-      </p>
-      <div class="searchbar">
-        <input id="q" class="input" placeholder="🔎 Puesto, empresa o ciudad" />
-        <select id="company" class="select">
-          <option value="">Todas las empresas</option>
-        </select>
-        <select id="modality" class="select">
-          <option value="">Cualquier modalidad</option>
-          <option>Presencial</option>
-          <option>Híbrido</option>
-          <option>Remoto</option>
-        </select>
-        <button class="btn" id="apply">Filtrar</button>
-      </div>
-      <button class="btn" id="clearFilters">Limpiar</button>
-    </section>
-    <section id="empleos" class="view">
-      <div id="jobsGrid" class="grid"></div>
-      <div id="emptyJobs" class="empty" style="display:none">
-        No se encontraron resultados
-      </div>
-    </section>
-    <section id="favoritos" class="view" style="display:none">
-      <h2 class="section-title">Favoritos</h2>
-      <div id="favGrid" class="grid"></div>
-      <div id="emptyFav" class="empty">
-        Nada guardado aún
-      </div>
-    </section>
-    <section id="capacitacion" class="view" style="display:none">
-      <h2 class="section-title">Capacitación laboral</h2>
-      <div id="trainGrid" class="grid"></div>
-    </section>
-    <div class="snackbar" id="snackbar"></div>
-  </main>
-  <script>
-    // ... tu código JavaScript original ...
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>talent up -- Empleos & Capacitación</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  
-  <style>
-    /* ===== VARIABLES CSS ===== */
-    :root {
-      --bg: #0b1020;
-      --panel: #121933;
-      --muted: #9aa4c7;
-      --text: #ecf0ff;
-      --brand: #6ea8fe;
-      --ok: #36d399;
-      --warn: #fbbf24;
-      --danger: #fb7185;
-      --ring: rgba(110, 168, 254, .4);
-      --card: #12182e;
-      --chip: #1b2342;
-      --shadow: 0 20px 40px rgba(3, 10, 40, .35);
-      --radius: 18px;
-    }
-
-    /* ===== RESET Y BASE ===== */
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: Inter, system-ui, Arial, sans-serif;
@@ -110,284 +29,95 @@
       color: var(--text);
       line-height: 1.4;
     }
-
-    /* ===== LAYOUT ===== */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    /* ===== HEADER ===== */
+    .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
     header {
-      position: sticky;
-      top: 0;
-      background: #0b1020cc;
-      backdrop-filter: blur(8px);
-      z-index: 50;
+      position: sticky; top: 0; background: #0b1020cc; backdrop-filter: blur(8px); z-index: 50;
       border-bottom: 1px solid rgba(255, 255, 255, .05);
     }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-    }
-
+    .nav { display: flex; align-items: center; gap: 12px; padding: 14px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; }
     .logo {
-      width: 34px;
-      height: 34px;
-      display: grid;
-      place-items: center;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #6ea8fe, #36d399);
-      color: #0a1022;
-      font-weight: 900;
+      width: 34px; height: 34px; display: grid; place-items: center; border-radius: 12px;
+      background: linear-gradient(135deg, #6ea8fe, #36d399); color: #0a1022; font-weight: 900;
       box-shadow: var(--shadow);
     }
-
-    /* ===== NAVEGACIÓN ===== */
-    .tabs {
-      margin-left: auto;
-      display: flex;
-      gap: 8px;
-    }
-
+    .tabs { margin-left: auto; display: flex; gap: 8px; }
     .tab-btn {
-      border: 0;
-      padding: 10px 14px;
-      border-radius: 12px;
-      background: transparent;
-      color: var(--muted);
-      cursor: pointer;
-      font-weight: 600;
+      border: 0; padding: 10px 14px; border-radius: 12px; background: transparent;
+      color: var(--muted); cursor: pointer; font-weight: 600;
     }
-
-    .tab-btn.active,
-    .tab-btn:hover {
-      background: var(--chip);
-      color: var(--text);
-    }
-
-    /* ===== BOTONES ===== */
+    .tab-btn.active,.tab-btn:hover { background: var(--chip); color: var(--text); }
     .btn {
-      border: 1px solid rgba(255, 255, 255, .1);
-      background: #0f1530;
-      color: var(--text);
-      padding: 10px 14px;
-      border-radius: 12px;
-      cursor: pointer;
-      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, .1); background: #0f1530; color: var(--text);
+      padding: 10px 14px; border-radius: 12px; cursor: pointer; font-weight: 600;
     }
-
-    .btn:hover {
-      border-color: rgba(255, 255, 255, .25);
-    }
-
-    /* ===== SECCIÓN HERO ===== */
-    .hero {
-      display: grid;
-      gap: 14px;
-      padding: 20px 0 10px;
-    }
-
-    .title {
-      font-size: clamp(26px, 5vw, 42px);
-      font-weight: 800;
-    }
-
-    .subtitle {
-      color: var(--muted);
-      max-width: 760px;
-    }
-
-    /* ===== BARRA DE BÚSQUEDA ===== */
+    .btn:hover { border-color: rgba(255, 255, 255, .25); }
+    .hero { display: grid; gap: 14px; padding: 20px 0 10px; }
+    .title { font-size: clamp(26px, 5vw, 42px); font-weight: 800; }
+    .subtitle { color: var(--muted); max-width: 760px; }
     .searchbar {
-      display: grid;
-      grid-template-columns: 1fr 180px 180px auto;
-      gap: 10px;
+      display: grid; grid-template-columns: 1fr 180px 180px auto; gap: 10px;
     }
-
-    .input,
-    .select {
-      padding: 12px 14px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, .12);
-      background: #0e1531;
-      color: var(--text);
+    .input, .select {
+      padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, .12);
+      background: #0e1531; color: var(--text);
     }
-
-    .input:focus,
-    .select:focus {
-      box-shadow: inset 0 0 0 2px var(--ring);
-    }
-
-    /* ===== GRID Y TARJETAS ===== */
+    .input:focus, .select:focus { box-shadow: inset 0 0 0 2px var(--ring); }
     .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 14px;
-      margin-top: 16px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px; margin-top: 16px;
     }
-
     .card {
       background: linear-gradient(180deg, rgba(255, 255, 255, .03), transparent);
-      border: 1px solid rgba(255, 255, 255, .08);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      transition: .15s;
+      border: 1px solid rgba(255, 255, 255, .08); border-radius: var(--radius);
+      box-shadow: var(--shadow); overflow: hidden; transition: .15s;
     }
-
-    .card:hover {
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, .18);
-    }
-
+    .card:hover { transform: translateY(-2px); border-color: rgba(255, 255, 255, .18); }
     .card-head {
-      display: flex;
-      gap: 12px;
-      padding: 14px;
-      align-items: center;
-      border-bottom: 1px solid rgba(255, 255, 255, .06);
-      background: var(--card);
+      display: flex; gap: 12px; padding: 14px; align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, .06); background: var(--card);
     }
-
     .avatar {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      background: var(--chip);
-      font-weight: 800;
+      width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center;
+      background: var(--chip); font-weight: 800;
     }
-
-    .company {
-      font-weight: 800;
-    }
-
-    .location {
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    /* ===== TAGS Y CHIPS ===== */
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 12px 14px 0;
-    }
-
+    .company { font-weight: 800; }
+    .location { color: var(--muted); font-size: 13px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; padding: 12px 14px 0; }
     .chip {
-      background: var(--chip);
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 700;
-      color: #c7d2fe;
+      background: var(--chip); padding: 6px 10px; border-radius: 999px;
+      font-size: 12px; font-weight: 700; color: #c7d2fe;
     }
-
-    .desc {
-      padding: 8px 14px;
-      color: #d7dcff;
-      min-height: 56px;
-    }
-
-    /* ===== PIE DE TARJETA ===== */
+    .desc { padding: 8px 14px; color: #d7dcff; min-height: 56px; }
     .card-foot {
-      display: flex;
-      gap: 8px;
-      padding: 14px;
-      border-top: 1px solid rgba(255, 255, 255, .06);
+      display: flex; gap: 8px; padding: 14px; border-top: 1px solid rgba(255, 255, 255, .06);
     }
-
     .pill {
-      flex: 1;
-      text-align: center;
-      border-radius: 12px;
-      padding: 10px;
-      font-weight: 700;
-      cursor: pointer;
-      border: 1px solid rgba(255, 255, 255, .1);
+      flex: 1; text-align: center; border-radius: 12px; padding: 10px;
+      font-weight: 700; cursor: pointer; border: 1px solid rgba(255, 255, 255, .1);
       background: #0f1530;
     }
-
-    .pill.save.active {
-      outline: 2px solid var(--ok);
-    }
-
-    /* ===== ESTADOS VACÍOS ===== */
-    .empty {
-      text-align: center;
-      padding: 24px;
-      color: var(--muted);
-    }
-
-    /* ===== SECCIONES ===== */
-    .section-title {
-      margin: 28px 0 8px;
-      font-size: 22px;
-      font-weight: 800;
-    }
-
-    /* ===== CAPACITACIÓN ===== */
+    .pill.save.active { outline: 2px solid var(--ok); }
+    .empty { text-align: center; padding: 24px; color: var(--muted); }
+    .section-title { margin: 28px 0 8px; font-size: 22px; font-weight: 800; }
     .train {
-      padding: 16px;
-      border-radius: var(--radius);
-      background: var(--card);
+      padding: 16px; border-radius: var(--radius); background: var(--card);
       border: 1px solid rgba(255, 255, 255, .08);
     }
-
-    .progress {
-      height: 8px;
-      border-radius: 999px;
-      background: #0f1530;
-      overflow: hidden;
-    }
-
-    .bar {
-      height: 100%;
-      background: linear-gradient(90deg, var(--brand), var(--ok));
-    }
-
-    /* ===== NOTIFICACIONES ===== */
+    .progress { height: 8px; border-radius: 999px; background: #0f1530; overflow: hidden; }
+    .bar { height: 100%; background: linear-gradient(90deg, var(--brand), var(--ok)); }
     .snackbar {
-      position: fixed;
-      left: 50%;
-      bottom: 20px;
-      transform: translateX(-50%);
-      background: #111831;
-      padding: 12px 16px;
-      border-radius: 12px;
-      box-shadow: var(--shadow);
-      opacity: 0;
-      transition: .2s;
+      position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%);
+      background: #111831; padding: 12px 16px; border-radius: 12px;
+      box-shadow: var(--shadow); opacity: 0; transition: .2s;
     }
-
-    .snackbar.show {
-      opacity: 1;
-    }
-
-    /* ===== FOOTER ===== */
+    .snackbar.show { opacity: 1; }
     footer {
-      color: var(--muted);
-      text-align: center;
-      padding: 12px 0;
+      color: var(--muted); text-align: center; padding: 12px 0;
       border-bottom: 1px solid rgba(255, 255, 255, .1);
     }
   </style>
 </head>
-
 <body>
   <!-- ===== HEADER ===== -->
   <header>
@@ -396,20 +126,16 @@
         <div class="logo">AR</div>
         <div>talent up <span style="opacity:.7">Argentina</span></div>
       </div>
-      
       <div class="tabs">
         <button class="tab-btn active" data-tab="empleos">Empleos</button>
         <button class="tab-btn" data-tab="capacitacion">Capacitación</button>
         <button class="tab-btn" data-tab="favoritos">Favoritos</button>
       </div>
-      
       <div class="actions">
         <button class="btn" id="darkToggle">🌗</button>
       </div>
     </div>
   </header>
-
-  <!-- ===== CONTENIDO PRINCIPAL ===== -->
   <main class="container">
     <!-- Sección Hero -->
     <section class="hero">
@@ -418,8 +144,6 @@
         Buscá por puesto, empresa o ciudad; filtrá por modalidad y nivel. 
         Guardá tus avisos y seguí tu progreso.
       </p>
-      
-      <!-- Barra de búsqueda -->
       <div class="searchbar">
         <input id="q" class="input" placeholder="🔎 Puesto, empresa o ciudad" />
         <select id="company" class="select">
@@ -433,10 +157,8 @@
         </select>
         <button class="btn" id="apply">Filtrar</button>
       </div>
-      
       <button class="btn" id="clearFilters">Limpiar</button>
     </section>
-
     <!-- Sección Empleos -->
     <section id="empleos" class="view">
       <div id="jobsGrid" class="grid"></div>
@@ -444,7 +166,6 @@
         No se encontraron resultados
       </div>
     </section>
-
     <!-- Sección Favoritos -->
     <section id="favoritos" class="view" style="display:none">
       <h2 class="section-title">Favoritos</h2>
@@ -453,17 +174,13 @@
         Nada guardado aún
       </div>
     </section>
-
     <!-- Sección Capacitación -->
     <section id="capacitacion" class="view" style="display:none">
       <h2 class="section-title">Capacitación laboral</h2>
       <div id="trainGrid" class="grid"></div>
     </section>
-
-    <!-- Notificaciones -->
     <div class="snackbar" id="snackbar"></div>
   </main>
-
   <script>
     // ===== DATOS DE LA APLICACIÓN =====
     const COMPANIES = [
@@ -471,58 +188,16 @@
       { name: 'YPF', city: 'La Plata', color: '#00bcd4' },
       { name: 'Globant', city: 'CABA', color: '#a78bfa' }
     ];
-
     const JOBS = [
-      {
-        id: '1',
-        title: 'Frontend Dev',
-        company: 'Mercado Libre',
-        city: 'CABA',
-        modality: 'Híbrido',
-        level: 'SSr',
-        skills: ['HTML', 'JS'],
-        desc: 'Construí interfaces.'
-      },
-      {
-        id: '2',
-        title: 'Técnico',
-        company: 'YPF',
-        city: 'La Plata',
-        modality: 'Presencial',
-        level: 'Jr',
-        skills: ['Mecánica'],
-        desc: 'Mantenimiento preventivo.'
-      },
-      {
-        id: '3',
-        title: 'Data Analyst',
-        company: 'Globant',
-        city: 'CABA',
-        modality: 'Remoto',
-        level: 'SSr',
-        skills: ['SQL', 'Python'],
-        desc: 'Analiza datos y reportes.'
-      }
+      { id: '1', title: 'Frontend Dev', company: 'Mercado Libre', city: 'CABA', modality: 'Híbrido', level: 'SSr', skills: ['HTML', 'JS'], desc: 'Construí interfaces.' },
+      { id: '2', title: 'Técnico', company: 'YPF', city: 'La Plata', modality: 'Presencial', level: 'Jr', skills: ['Mecánica'], desc: 'Mantenimiento preventivo.' },
+      { id: '3', title: 'Data Analyst', company: 'Globant', city: 'CABA', modality: 'Remoto', level: 'SSr', skills: ['SQL', 'Python'], desc: 'Analiza datos y reportes.' }
     ];
-
     const TRAINING = [
-      {
-        id: 't1',
-        name: 'Armado de CV',
-        minutes: 40,
-        badge: '📄',
-        description: 'Cómo crear un CV'
-      },
-      {
-        id: 't2',
-        name: 'Entrevistas',
-        minutes: 35,
-        badge: '🎤',
-        description: 'Tips de entrevista'
-      }
+      { id: 't1', name: 'Armado de CV', minutes: 40, badge: '📄', description: 'Cómo crear un CV' },
+      { id: 't2', name: 'Entrevistas', minutes: 35, badge: '🎤', description: 'Tips de entrevista' }
     ];
-
-    // ===== ESTADO DE LA APLICACIÓN =====
+    // ===== ESTADO Y UTILIDADES =====
     const state = {
       q: '',
       company: '',
@@ -530,27 +205,17 @@
       favs: new Set(JSON.parse(localStorage.getItem('favs') || '[]')),
       progress: JSON.parse(localStorage.getItem('trainProgress') || '{}')
     };
-
-    // ===== UTILIDADES =====
     const $ = s => document.querySelector(s);
     const $$ = s => Array.from(document.querySelectorAll(s));
-    
     const toast = message => {
       const snackbar = $('#snackbar');
       snackbar.textContent = message;
       snackbar.classList.add('show');
       setTimeout(() => snackbar.classList.remove('show'), 1500);
     };
-    
-    const saveFavs = () => {
-      localStorage.setItem('favs', JSON.stringify([...state.favs]));
-    };
-    
-    const saveProgress = () => {
-      localStorage.setItem('trainProgress', JSON.stringify(state.progress));
-    };
-
-    // ===== FUNCIONES DE RENDERIZADO =====
+    const saveFavs = () => localStorage.setItem('favs', JSON.stringify([...state.favs]));
+    const saveProgress = () => localStorage.setItem('trainProgress', JSON.stringify(state.progress));
+    // ===== RENDERIZADO Y FUNCIONES =====
     function renderFilters() {
       for (const company of COMPANIES) {
         const option = document.createElement('option');
@@ -559,12 +224,9 @@
         $('#company').appendChild(option);
       }
     }
-
-    // ahora renderJobs acepta un selector de mensaje vacío opcional
     function renderJobs(jobList, mountElement, emptySelector = '#emptyJobs') {
       mountElement.innerHTML = '';
       const emptyEl = document.querySelector(emptySelector);
-
       if (!jobList.length) {
         if (emptyEl) emptyEl.style.display = 'block';
         mountElement.style.display = 'none';
@@ -572,27 +234,20 @@
       }
       if (emptyEl) emptyEl.style.display = 'none';
       mountElement.style.display = 'grid';
-
       for (const job of jobList) {
         const company = COMPANIES.find(c => c.name === job.company);
         const card = document.createElement('div');
         card.className = 'card';
-
         const skillsHtml = (job.skills || []).map(skill => `<span class="chip">${skill}</span>`).join('');
-
         card.innerHTML = `
           <div class="card-head">
-            <div class="avatar" style="background:${company?.color}">
-              ${job.company[0]}
-            </div>
+            <div class="avatar" style="background:${company?.color}">${job.company[0]}</div>
             <div>
               <div class="company">${job.company}</div>
               <div class="location">${job.city} • ${job.modality} • ${job.level}</div>
             </div>
           </div>
-          <div class="tags">
-            ${skillsHtml}
-          </div>
+          <div class="tags">${skillsHtml}</div>
           <p class="desc">${job.desc}</p>
           <div class="card-foot">
             <button class="pill apply" data-id="${job.id}">Postular</button>
@@ -601,191 +256,88 @@
             </button>
           </div>
         `;
-
-        // agregar listeners directamente al card para evitar problemas
         mountElement.appendChild(card);
-
-        const applyBtn = card.querySelector('.pill.apply');
-        const saveBtn = card.querySelector('.pill.save');
-
-        if (applyBtn) {
-          applyBtn.onclick = () => {
-            const jobObj = JOBS.find(j => j.id === applyBtn.dataset.id);
-            const searchQuery = encodeURIComponent(`${jobObj.title} ${jobObj.company} trabajo Argentina`);
-            window.open(`https://www.google.com/search?q=${searchQuery}`);
-          };
-        }
-
-        if (saveBtn) {
-          saveBtn.onclick = () => {
-            const jobId = saveBtn.dataset.id;
-
-            if (state.favs.has(jobId)) {
-              state.favs.delete(jobId);
-              toast('Eliminado');
-            } else {
-              state.favs.add(jobId);
-              toast('Guardado');
-            }
-
-            saveFavs();
-            applyFilters();
-            renderFavs();
-          };
-        }
+        card.querySelector('.pill.apply').onclick = () => {
+          const jobObj = JOBS.find(j => j.id === job.id);
+          const searchQuery = encodeURIComponent(`${jobObj.title} ${jobObj.company} trabajo Argentina`);
+          window.open(`https://www.google.com/search?q=${searchQuery}`);
+        };
+        card.querySelector('.pill.save').onclick = () => {
+          if (state.favs.has(job.id)) {
+            state.favs.delete(job.id); toast('Eliminado');
+          } else {
+            state.favs.add(job.id); toast('Guardado');
+          }
+          saveFavs(); applyFilters(); renderFavs();
+        };
       }
     }
-
     function renderFavs() {
       const favGrid = $('#favGrid');
       const favoriteJobs = JOBS.filter(job => state.favs.has(job.id));
-
-      // usamos renderJobs pero con selector para mensaje vacío de favoritos
       renderJobs(favoriteJobs, favGrid, '#emptyFav');
     }
-
     function applyFilters() {
       const query = state.q.toLowerCase();
-
       const filteredJobs = JOBS.filter(job => {
         const matchesCompany = !state.company || job.company === state.company;
         const matchesModality = !state.modality || job.modality === state.modality;
-        const matchesQuery = !query || 
-          job.title.toLowerCase().includes(query) ||
-          job.company.toLowerCase().includes(query) ||
-          job.city.toLowerCase().includes(query);
-        
+        const matchesQuery = !query || job.title.toLowerCase().includes(query) || job.company.toLowerCase().includes(query) || job.city.toLowerCase().includes(query);
         return matchesCompany && matchesModality && matchesQuery;
       });
-      
       renderJobs(filteredJobs, $('#jobsGrid'));
     }
-
     function renderTraining() {
       const trainGrid = $('#trainGrid');
       trainGrid.innerHTML = '';
-      
       for (const training of TRAINING) {
         const progress = state.progress[training.id] || 0;
         const container = document.createElement('div');
         container.className = 'train';
-        
         container.innerHTML = `
           <div style="display:flex;justify-content:space-between;align-items:center">
             <div style="font-weight:800">${training.badge} ${training.name}</div>
             <div class="chip">${training.minutes}min</div>
           </div>
           <p class="desc">${training.description}</p>
-          <div class="progress">
-            <div class="bar" style="width:${progress}%"></div>
-          </div>
+          <div class="progress"><div class="bar" style="width:${progress}%"></div></div>
           <button class="btn" data-id="${training.id}">
             ${progress >= 100 ? 'Reiniciar' : '+25%'}
           </button>
           <span>${progress}%</span>
         `;
-        
         trainGrid.appendChild(container);
       }
-      
-      // Event listeners para botones de progreso
       trainGrid.querySelectorAll('.btn').forEach(button => {
         button.onclick = () => {
           const trainingId = button.dataset.id;
           const currentProgress = state.progress[trainingId] || 0;
-          
           state.progress[trainingId] = currentProgress >= 100 ? 0 : Math.min(100, currentProgress + 25);
-          saveProgress();
-          renderTraining();
+          saveProgress(); renderTraining();
         };
       });
     }
-
-    // ===== FUNCIONES DE NAVEGACIÓN =====
     function switchTab(tabName) {
-      // Actualizar botones de navegación
-      $$('.tab-btn').forEach(button => {
-        button.classList.toggle('active', button.dataset.tab === tabName);
-      });
-      
-      // Mostrar/ocultar secciones
-      $$('.view').forEach(view => {
-        view.style.display = view.id === tabName ? 'block' : 'none';
-      });
-      
-      // Renderizar contenido específico
-      if (tabName === 'favoritos') {
-        renderFavs();
-      }
-      if (tabName === 'capacitacion') {
-        renderTraining();
-      }
+      $$('.tab-btn').forEach(button => button.classList.toggle('active', button.dataset.tab === tabName));
+      $$('.view').forEach(view => view.style.display = view.id === tabName ? 'block' : 'none');
+      if (tabName === 'favoritos') { renderFavs(); }
+      if (tabName === 'capacitacion') { renderTraining(); }
     }
-
-    function exportFavs() {
-      const favoriteJobs = JOBS.filter(job => state.favs.has(job.id));
-      const blob = new Blob([JSON.stringify(favoriteJobs, null, 2)], { type: 'application/json' });
-      const link = document.createElement('a');
-      link.href = URL.createObjectURL(blob);
-      link.download = 'favoritos.json';
-      link.click();
-    }
-
-    // ===== INICIALIZACIÓN =====
     function mount() {
-      // Renderizar filtros y trabajos iniciales
-      renderFilters();
-      applyFilters();
-      
-      // Event listeners para búsqueda
-      $('#q').oninput = event => {
-        state.q = event.target.value;
-        applyFilters();
-      };
-      
-      $('#company').onchange = event => {
-        state.company = event.target.value;
-        applyFilters();
-      };
-      
-      $('#modality').onchange = event => {
-        state.modality = event.target.value;
-        applyFilters();
-      };
-      
+      renderFilters(); applyFilters();
+      $('#q').oninput = e => { state.q = e.target.value; applyFilters(); };
+      $('#company').onchange = e => { state.company = e.target.value; applyFilters(); };
+      $('#modality').onchange = e => { state.modality = e.target.value; applyFilters(); };
       $('#apply').onclick = applyFilters;
-      
-      // Limpiar filtros
       $('#clearFilters').onclick = () => {
-        state.q = '';
-        state.company = '';
-        state.modality = '';
-        $('#q').value = '';
-        $('#company').value = '';
-        $('#modality').value = '';
+        state.q = ''; state.company = ''; state.modality = '';
+        $('#q').value = ''; $('#company').value = ''; $('#modality').value = '';
         applyFilters();
       };
-      
-      // Event listeners para navegación
-      $$('.tab-btn').forEach(button => {
-        button.onclick = () => switchTab(button.dataset.tab);
-      });
-      
-      // Event listener para exportar (si existe el botón)
-      const exportBtn = $('#exportBtn');
-      if (exportBtn) {
-        exportBtn.onclick = event => {
-          event.preventDefault();
-          exportFavs();
-        };
-      }
-
-      // opcional: asegurarse que la pestaña activa inicial esté visible
+      $$('.tab-btn').forEach(button => button.onclick = () => switchTab(button.dataset.tab));
       const activeTab = $$('.tab-btn').find(b => b.classList.contains('active'))?.dataset.tab || 'empleos';
       switchTab(activeTab);
     }
-
-    // Inicializar cuando el DOM esté listo
     document.addEventListener('DOMContentLoaded', mount);
   </script>
 </body>
